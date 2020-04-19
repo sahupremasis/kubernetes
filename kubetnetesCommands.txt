@@ -1,1 +1,50 @@
+gcloud container clusters resize --zone us-central1-a in28minutes-cluster --num-nodes=3
+
 kubectl get pods
+
+kubectl get replicaset  (or kubectl get rs)
+
+kubectl get deployment
+
+kubectl get service
+
+get pods -o wide
+
+kubectl explain pods
+
+kubectl describe pod hello-world-rest-api-66546f7b56-pghsl
+
+kubectl scale deployment hello-world-rest-api --replicas=3
+
+kubectl get events
+
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+
+kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
+
+kubectl get componentstatuses
+
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=sahupremasis/hello-world-rest-api:0.0.4-SNAPSHOT
+
+kubectl rollout history deployment hello-world-rest-api
+
+kubectl rollout status deployment hello-world-rest-api
+
+kubectl rollout undo deployment hello-world-rest-api --to-revision=5
+
+kubectl logs <POD_ID>
+
+kubectl logs -f <POD_ID>
+
+kubectl delete all -l app=hello-world-rest-api
+
+kubectl get all
+
+kubectl diff -f deployment.yaml
+
+
+
