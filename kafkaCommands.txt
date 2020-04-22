@@ -1,3 +1,30 @@
+Start zookeeper
+zookeeper-server-start config/zookeeper.properties
+
+Start kafka
+kafka-server-start config/server.properties
+
 Create Kafka topic:
 kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --create --partitions 3 --replication-factor 1
+
+List all topics
+kafka-topics --zookeeper 127.0.0.1:2181 --list
+
+Describe kafka topics
+kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --describe
+
+Create a Second topic
+kafka-topics --zookeeper 127.0.0.1:2181 --topic second_topic --create --partitions 6 --replication-factor 1
+
+Delete a topic:
+kafka-topics --zookeeper 127.0.0.1:2181 --topic second_topic --delete
+
+Create producer:
+kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic
+This will give > where you can add messages and then press Control+C
+
+kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic --producer-propertcks=all
+
+
+kafka-topics --zookeeper 127.0.0.1:2181 --topic new_topic_2 --describe
 
