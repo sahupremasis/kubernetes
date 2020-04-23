@@ -25,6 +25,43 @@ This will give > where you can add messages and then press Control+C
 
 kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic --producer-propertcks=all
 
-
 kafka-topics --zookeeper 127.0.0.1:2181 --topic new_topic_2 --describe
+
+
+KAFKA CONSUMERS
+----------------------
+
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic
+
+
+Consume everything from beginning:
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning
+
+Start group consumer:
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --group my-first-application
+
+List consumer groups:
+kafka-consumer-groups --bootstrap-server localhost:9092 --list
+
+Describe Group:
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-second-application
+
+Reset offsets to earliest
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --to-earliest --execute --topic first_topic
+
+Shift offset forward or backward (User positive or negative number after --shift-by)
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --shift-by -2 --execute --topic first_topic
+
+
+PRODUCER_CONSUMER with KEY/VALUE
+----------------------------------
+
+producer with key/value
+kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic --property parse.key=true --property key.separator=,
+
+consumer with key/value
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning --property print.key=true --property key.separator=,
+
+
+
 
