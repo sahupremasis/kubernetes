@@ -46,5 +46,7 @@ kubectl get all
 
 kubectl diff -f deployment.yaml
 
+kubectl get service
 
+kubectl get service --watch        (Keep checking in intervals)
 
