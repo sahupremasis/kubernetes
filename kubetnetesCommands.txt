@@ -50,3 +50,14 @@ kubectl get service
 
 kubectl get service --watch        (Keep checking in intervals)
 
+#Delete all the Pods in Kubernetes cluster
+kubectl delete --all services
+
+#Delete all the services in Kubernetes cluster
+kubectl delete --all services
+
+#Get Persistent volume and persistent volume claim
+kubectl get pv
+
+kubectl get pvc
+
