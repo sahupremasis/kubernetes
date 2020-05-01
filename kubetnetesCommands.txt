@@ -40,6 +40,9 @@ kubectl logs <POD_ID>
 
 kubectl logs -f <POD_ID>
 
+#Delete mysql service
+kubectl delete service mysql
+
 kubectl delete all -l app=hello-world-rest-api
 
 kubectl get all
@@ -55,6 +58,8 @@ kubectl delete --all services
 
 #Delete all the services in Kubernetes cluster
 kubectl delete --all services
+
+kubectl delete -f mysql-deployment.yaml,mysql-database-data-volume-persistentvolumeclaim.yaml,mysql-service.yaml,todo-web-application-deployment.yaml,todo-web-application-service.yaml
 
 #Get Persistent volume and persistent volume claim
 kubectl get pv
