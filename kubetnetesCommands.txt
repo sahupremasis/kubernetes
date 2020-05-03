@@ -14,6 +14,7 @@ kubectl explain pods
 
 kubectl describe pod hello-world-rest-api-66546f7b56-pghsl
 
+#Reduce or Increase the number of deployments
 kubectl scale deployment hello-world-rest-api --replicas=3
 
 kubectl get events
@@ -68,4 +69,10 @@ kubectl get pvc
 
 #Get Service Account
 kubectl get serviceaccount
+
+#Create Config Map
+kubectl create configmap currency-conversion --from-literal=YOUR_PROPERTY1=value1 --from-literal=YOUR_PROPERTY_2=value2
+
+#Describe Config Map
+kubectl describe configmap/currency-conversion
 
