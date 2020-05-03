@@ -76,3 +76,6 @@ kubectl create configmap currency-conversion --from-literal=YOUR_PROPERTY1=value
 #Describe Config Map
 kubectl describe configmap/currency-conversion
 
+#Get CPU consumption of pods
+kubectl top pods
+
