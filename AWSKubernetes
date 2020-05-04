@@ -1,0 +1,19 @@
+#Install AWS:
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+
+#Check AWS Version
+aws --version
+
+#Install eksctl (https://eksctl.io/introduction/)
+brew tap weaveworks/tap
+brew install weaveworks/tap/eksctl
+
+#Check EKSCTL version
+eksctl version
+
+#Configure AWS with access key and secret key
+aws configure
+
