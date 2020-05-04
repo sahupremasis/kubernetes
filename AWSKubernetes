@@ -17,3 +17,39 @@ eksctl version
 #Configure AWS with access key and secret key
 aws configure
 
+#https://github.com/in28minutes/kubernetes-crash-course/blob/master/instructions-aws-and-azure.md
+
+#Create EKSCTL cluster
+eksctl create cluster --name in28minutes-cluster --nodegroup-name in28minutes-cluster-node-group  --node-type t2.medium --nodes 3 --nodes-min 3 --nodes-max 7 --managed --asg-access
+
+#Delete the cluster
+eksctl delete cluster --name in28minutes-cluster
+
+kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
+
+kubectl get deployments
+
+kubectl get replicaset
+
+kubectl get pods
+
+#Expose the deployments
+kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+
+#Setup MySQL Service
+kubectl apply -f mysql-database-data-volume-persistentvolumeclaim.yaml,mysql-deployment.yaml,mysql-service.yaml
+
+kubectl apply -f config-map.yaml,secret.yaml,todo-web-application-deployment.yaml,todo-web-application-service.yaml
+
+
+#Delete
+kubectl delete all -l app=hello-world-rest-api
+kubectl delete all -l app=todowebapp-h2
+kubectl delete all -l io.kompose.service=todo-web-application
+kubectl delete all -l io.kompose.service=mysql
+
+#Deploy 04
+kubectl apply -f 04-currency-exchange-microservice-basic/deployment.yaml
+kubectl apply -f 05-currency-conversion-microservice-basic/deployment.yaml
+
+
