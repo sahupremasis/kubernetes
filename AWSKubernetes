@@ -53,3 +53,5 @@ kubectl apply -f 04-currency-exchange-microservice-basic/deployment.yaml
 kubectl apply -f 05-currency-conversion-microservice-basic/deployment.yaml
 
 
+#Delete Cluster
+eksctl delete cluster --name in28minutes-cluster
