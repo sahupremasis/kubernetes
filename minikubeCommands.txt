@@ -21,3 +21,21 @@ kubectl cluster-info
 #Kubernetes master is running at https://192.168.64.3:8443
 #KubeDNS is running at https://192.168.64.3:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
+#Describe Pod
+kubectl describe pods client-pod
+
+#Delete pod
+kubectl delete -f <Config-File>
+
+#IP Address of minikube
+minikube ip
+
+#Update Image
+kubectl set image deployment/client-deployment client=stephengrider/multi-client:v5
+
+#Configure VM to use your docker server (Only configures the current terminal window)
+eval $(minikube docker-env)
+
+#Run commands in the docker container
+docker exec -it 85cbb3276556 sh
+
