@@ -39,3 +39,6 @@ eval $(minikube docker-env)
 #Run commands in the docker container
 docker exec -it 85cbb3276556 sh
 
+#Start shell within kubernetes pod
+kubectl exec -it client-deployment-6c59d7566f-7q6x7 sh
+
