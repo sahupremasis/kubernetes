@@ -42,3 +42,15 @@ docker exec -it 85cbb3276556 sh
 #Start shell within kubernetes pod
 kubectl exec -it client-deployment-6c59d7566f-7q6x7 sh
 
+#Kubectl storage class (Default is standard)
+kubectl get storageclass
+
+#Describe storage class
+describe storageclass
+
+#Create secret
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
+
+#Get secrets
+kubectl get secrets
+
