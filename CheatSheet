@@ -1,2 +1,51 @@
-alias k2=kubectl
+kubectl create ns task
 
+alias k2=kubectl
+or
+alias k2='kubectl -n <NAMESPACE>'
+
+k2 config set-context --current --namespace=task
+
+# Create a configmap with a variable called "greeting" with a value pointing to the file value.txt
+k2 create cm task-cm --from-file=greeting=value.txt -n task
+
+k2 create deployment task-deployment --image=busybox -n task -- replicas=5 --dry-run=client -o yaml > task-deployment.yaml
+
+k2 create deployment task-deployment --image=busybox -n task --replicas=5 --dry-run=client -o yaml > task-deployment.yaml
+
+vim task-deployment.yaml
+--------------------------------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: task-deployment
+  name: task-deployment
+  namespace: task
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: task-deployment
+  template:
+    metadata:
+      labels:
+        app: task-deployment
+    spec:
+      containers:
+      - image: busybox
+        name: busybox
+        env:
+        - name: MY_GREETING
+          valueFrom:
+            configMapKeyRef:
+              key: greeting
+              name: task-cm
+        command: ["sh", "-c"]
+        args:
+        - env;
+          sleep 36000;
+--------------------------------------------------------------------------
+k2 delete ns task
+
+kubectl config set-context --current --namespace=default
