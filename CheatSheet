@@ -4,10 +4,35 @@ alias k2=kubectl
 or
 alias k2='kubectl -n <NAMESPACE>'
 
+unalias k2
+
 k2 config set-context --current --namespace=task
+
+# Deploy a pod named nginx-448839 using nginx:alpine image
+k2 run nginx-448839 --image=nginx:alpine --restart=Never
+
+## Create a new Deployment named httpd-frontend with 3 replicas using image httpd:2.4-alpine
+k2 create deployment httpd-frontend --image=httpd:2.4-alpine --dry-run=client -o yaml > deploy.yaml
+edit deploy.yaml and change replicas=3 
+k2 create -f deploy.yaml
+
+## Create a messaging pod using redis:alpine with the labels set to tier=msg
+k2 run messaging --image=redis:alpine --labels=tier=msg
+k2 describe pod messaging | grep -C 5 -i labels
+
+## Create a service messaging-service to expose the redis deployment in the marketting namespace within the cluster on port 6379
+k2 expose deployment redis --port=6379 --name=messaging-service --dry-run=client
+
+## Delete a pod
+k2 delete pod webapp-color --grace-period=0 --force
+
+## create configmap
+k2 create configmap cm-3392845 --from-literal=DB_NAME=SQL3322 --from-literal=DB_HOST=sql322.mycompany.com --from-literal=DB_PORT=3306
 
 # Create a configmap with a variable called "greeting" with a value pointing to the file value.txt
 k2 create cm task-cm --from-file=greeting=value.txt -n task
+
+
 
 k2 create deployment task-deployment --image=busybox -n task -- replicas=5 --dry-run=client -o yaml > task-deployment.yaml
 
@@ -49,3 +74,6 @@ spec:
 k2 delete ns task
 
 kubectl config set-context --current --namespace=default
+
+
+
